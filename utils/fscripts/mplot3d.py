@@ -2,8 +2,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import os
-import fscripts
-
+import utils.fscripts as fscripts
+print('ik doe nu iets')
 moving_average = fscripts.scripts['moving_average']
 x,y,z = args
 kw = kwargs
@@ -16,7 +16,7 @@ title = kw.pop('title','')
 
 y, x = np.mgrid[slice(x[0]-dx/2, x[-1]+dx, dx),
                 slice(y[0]-dy/2, y[-1]+dy, dy)]
-#print 'x,y: ',np.shape(y),np.shape(x)
+#print('x,y: ',np.shape(y),np.shape(x))
 
 cmap = plt.get_cmap(kw.pop('cmap','spectral'))
 coll_outp['cmap']=cmap
@@ -64,7 +64,7 @@ else:
     y=y[0:shz[1]+1,0:shz[0]+1]
     
     if kw.pop('transpose', False):
-        print 'transpose'
+        print('transpose')
         im = ax.pcolormesh(y.transpose(),x.transpose(), z, cmap=cmap)
     else:
         im = ax.pcolormesh(x, y, z.transpose(), cmap=cmap)

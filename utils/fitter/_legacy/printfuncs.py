@@ -119,9 +119,9 @@ def fit_report(inpars, modelpars=None, show_correl=True, min_correl=0.1,
         nout = "%s:%s" % (name, space)
         inval = '(init= ?)'
         if par.init_value is not None:
-            inval = '(init=% .7g)' % par.init_value
+            inval = '(init=%s)' % par.init_value
         if modelpars is not None and name in modelpars:
-            inval = '%s, model_value =% .7g' % (inval, modelpars[name].value)
+            inval = '%s, model_value =%s' % (inval, modelpars[name].value)
         try:
             sval = gformat(par.value)
         except (TypeError, ValueError):

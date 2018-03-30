@@ -17,12 +17,13 @@
 
 import os
 import logging
-basefol = r'C:\Users\gidelang\OneDrive\Documenten\Python Scripts\fscripts'
-defaultdirs = [basefol + r'\\general', 
-               basefol + r'\\general\utils',
-               basefol + r'\\general\dataprocessing',
-			   basefol + r'\\measurement'
-               ]
+basefol = os.path.join(os.path.split(__file__)[0], 'fscripts')
+
+defaultdirs = [basefol] 
+
+def execfile(filename, local = locals): 
+    return exec(open(filename, 'r').read(), local)   
+    
 class Script():
 
     def __init__(self, fn):

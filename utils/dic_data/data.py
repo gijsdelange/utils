@@ -7,8 +7,8 @@ Created on Thu Mar 15 21:30:38 2018
 
 import os
 import time
-import pickle
 import numpy as np
+import pickle
 DATAPATH = r'D:\data'
 
 def current_date():
@@ -48,24 +48,10 @@ def create_filepath():
         exists = os.path.exists(testpath)
     return testpath
         
-    
-
-def init_data_pickle(name):
-    fpath = create_filepath()
-    dat = {'filepath': fpath,
-           'timestamp': generate_datetime(),
-           'name' : name
-           }
-    return dat
-def save_data_pickle(dat):
-    pickle.dump(dat, open(dat['filepath'], 'wb'))
-    
-def open_last_data():
+def get_last_data_file():
     ls = os.listdir(create_datafolder())
     ls.sort()
-    return pickle.load(open(os.path.join(create_datafolder(), ls[-1]), 'rb'))
-
-
+    return open(os.path.join(create_datafolder(), ls[-1]), 'rb')
 
 def init_single_trace(xnames, ynames, npoints):
     data_trace = {}
@@ -83,8 +69,17 @@ def init_single_trace(xnames, ynames, npoints):
     data_trace['vals'] = np.zeros([npoints, ncoords + nvals])
     return data_trace 
     
+def init_dic_data(name):
+    fpath = create_filepath()
+    dat = {'filepath': fpath,
+           'timestamp': generate_datetime(),
+           'name' : name
+           }
+    return dat    
     
-    
-    
-    
+
+def save_data_pickle(dat):
+    pickle.dump(dat, open(dat['filepath'], 'wb'))    
+def open_last_pickle():
+    return pickle.load(get_last_data_file())    
     
