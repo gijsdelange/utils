@@ -3,13 +3,13 @@
 import numpy as np
 import h5py
 import os
-from dic_data import *
+#from utils.dic_data import *
 
 def save_dict_to_hdf5(dic, filename):
     """
     ....
     """
-    with h5py.File(filename, 'w') as h5file:
+    with h5py.File(filename + '.hdf5', 'w') as h5file:
         recursively_save_dict_contents_to_group(h5file, '/', dic)
 
 def recursively_save_dict_contents_to_group(h5file, path, dic):
@@ -18,7 +18,7 @@ def recursively_save_dict_contents_to_group(h5file, path, dic):
     """
     for key, item in dic.items():
         if isinstance(item, (np.ndarray, np.int64, np.float64, str, bytes, float, int)):
-            print(path, key, item)
+            #print(path, key, item)
             h5file[path + str(key)] = item
         elif isinstance(item, dict):
             recursively_save_dict_contents_to_group(h5file, path + key + '/', item)

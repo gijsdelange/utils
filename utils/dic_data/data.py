@@ -44,8 +44,11 @@ def create_filepath():
     exists = True
     while exists:
         kk+=1
-        testpath = basepath + '_%03d.pickle'%kk
-        exists = os.path.exists(testpath)
+        testpath = basepath + '_%03d'%kk
+        pickle_exists = os.path.exists(testpath + '.pickle')
+        hdf5_exists = os.path.exists(testpath + '.hdf5')
+        dat_exists = os.path.exists(testpath + '.dat')
+        exists = dat_exists or hdf5_exists or pickle_exists
     return testpath
         
 def get_last_data_file():
@@ -79,7 +82,7 @@ def init_dic_data(name):
     
 
 def save_data_pickle(dat):
-    pickle.dump(dat, open(dat['filepath'], 'wb'))    
+    pickle.dump(dat, open(dat['filepath']+'.pickle', 'wb'))    
 def open_last_pickle():
     return pickle.load(get_last_data_file())    
     
