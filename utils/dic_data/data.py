@@ -31,15 +31,15 @@ def generate_datetime():
     tag = current_date() + '_' + current_time()
     return tag
 
-def create_datafolder():
+def create_datafolder(datapath = DATAPATH):
     
-    fol = os.path.join(DATAPATH, current_date())
+    fol = os.path.join(datapath, current_date())
     if not os.path.exists(fol):
         os.mkdir(fol)
     return fol
 
-def create_filepath():
-    basepath = os.path.join(create_datafolder(), current_date() )
+def create_filepath(datapath = DATAPATH):
+    basepath = os.path.join(create_datafolder(datapath), current_date() )
     kk = 0
     exists = True
     while exists:
@@ -51,10 +51,10 @@ def create_filepath():
         exists = dat_exists or hdf5_exists or pickle_exists
     return testpath
         
-def get_last_data_file():
-    ls = os.listdir(create_datafolder())
+def get_last_data_file(datapath = DATAPATH):
+    ls = os.listdir(create_datafolder(datapath))
     ls.sort()
-    return open(os.path.join(create_datafolder(), ls[-1]), 'rb')
+    return open(os.path.join(create_datafolder(datapath), ls[-1]), 'rb')
 
 def init_single_trace(xnames, ynames, npoints):
     data_trace = {}
@@ -72,8 +72,8 @@ def init_single_trace(xnames, ynames, npoints):
     data_trace['vals'] = np.zeros([npoints, ncoords + nvals])
     return data_trace 
     
-def init_dic_data(name):
-    fpath = create_filepath()
+def init_dic_data(name, datapath = DATAPATH):
+    fpath = create_filepath(datapath)
     dat = {'filepath': fpath,
            'timestamp': generate_datetime(),
            'name' : name
@@ -83,6 +83,6 @@ def init_dic_data(name):
 
 def save_data_pickle(dat):
     pickle.dump(dat, open(dat['filepath']+'.pickle', 'wb'))    
-def open_last_pickle():
-    return pickle.load(get_last_data_file())    
+def open_last_pickle(datapath = DATAPATH):
+    return pickle.load(get_last_data_file(datapath))    
     
