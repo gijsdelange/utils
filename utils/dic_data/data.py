@@ -50,7 +50,21 @@ def create_filepath(datapath = DATAPATH):
         dat_exists = os.path.exists(testpath + '.dat')
         exists = dat_exists or hdf5_exists or pickle_exists
     return testpath
-        
+
+#find_data
+
+def find_data(datetstr, basedatdir = r'd:\data', dtype = 'hdf5'):
+    datestr, timestr = datetstr.split('_')
+    basedir = os.path.join(basedatdir, datestr)
+    dirlist = os.listdir(basedir)
+    for dirstr in dirlist:
+        if dirstr.find(timestr) > -1:
+            datdir = os.path.join(basedir, dirstr)
+            print('found data: ', datdir)
+            break
+    dpath = os.path.join(datdir, datestr + '_' + dirstr + '.' + dtype)
+    return dpath 
+    
 def get_last_data_file(datapath = DATAPATH):
     ls = os.listdir(create_datafolder(datapath))
     ls.sort()
