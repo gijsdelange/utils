@@ -2,7 +2,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import os
-import utils.fscripts as fscripts
+import fscripts
 print('ik doe nu iets')
 moving_average = fscripts.scripts['moving_average']
 x,y,z = args
@@ -18,7 +18,7 @@ y, x = np.mgrid[slice(x[0]-dx/2, x[-1]+dx, dx),
                 slice(y[0]-dy/2, y[-1]+dy, dy)]
 #print('x,y: ',np.shape(y),np.shape(x))
 
-cmap = plt.get_cmap(kw.pop('cmap','spectral'))
+cmap = plt.get_cmap(kw.pop('cmap','viridis'))
 coll_outp['cmap']=cmap
 figname = kw.pop('figname','mplot3d'+title)
 add_cursor = fscripts.scripts['add_cursor']

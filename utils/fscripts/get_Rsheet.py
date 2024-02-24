@@ -9,7 +9,7 @@ import numpy as np
 from scipy.optimize import fmin 
 
 Rvm, Rhm = args # measurted values for Rh, Rv
-print 'calculating'
+print('calculating')
 def vanderPauw(Rs,Rv,Rh):
     return np.exp(-np.pi*Rh/Rs) + np.exp(-np.pi*Rv/Rs)
 

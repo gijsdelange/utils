@@ -22,6 +22,7 @@ basefol = os.path.join(os.path.split(__file__)[0], 'fscripts')
 defaultdirs = [basefol] 
 
 def execfile(filename, local = locals): 
+    print(open(filename, 'r'))
     return exec(open(filename, 'r').read(), local)   
     
 class Script():
