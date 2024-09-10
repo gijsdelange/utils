@@ -97,7 +97,7 @@ for lap in laps[:]:
     t_lap +=[float(lap["TotalTimeSeconds"])]
     dx_lap +=[float(lap["DistanceMeters"])]
     #hrm_lap +=[float(lap["MaximumHeartRateBpm"]['Value'])]
-    #hra_lap +=[float(lap["AverageHeartRateBpm"]['Value'])]
+    hra_lap +=[float(lap["AverageHeartRateBpm"]['Value'])]
     #cal_lap +=[float(lap["Calories"])]
     nn+=1
     if type(lap["Track"])==type([]):
