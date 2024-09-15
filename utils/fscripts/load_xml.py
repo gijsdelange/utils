@@ -3,7 +3,7 @@ from math import radians, cos, sin, asin, sqrt
 import time,os
 import numpy as np
 import matplotlib.pyplot as plt
-import scripts
+
 
 
 def moving_average(x, N):
